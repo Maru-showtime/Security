@@ -3,191 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI.NOC | Live Security Network</title>
+    <title>AI.NOC | Decentralized Surveillance Node</title>
     <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background-color: #000000; 
-            color: #ffffff; 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.5;
-        }
-        header { 
-            background-color: #111111; 
-            border-bottom: 1px solid #333333; 
-            padding: 20px; 
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo { 
-            font-size: 1.8em; 
-            font-weight: 900; 
-            letter-spacing: 2px; 
-            margin: 0;
-        }
-        .live-status { 
-            color: #ff3b30; 
-            font-weight: 700; 
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #ff3b30;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse { 
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); } 
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); } 
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); } 
-        }
-        .container { 
-            max-width: 700px; 
-            margin: 0 auto; 
-            padding: 40px 20px; 
-        }
-        h2 { 
-            font-size: 2.2em; 
-            font-weight: 800; 
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-        .subtitle { 
-            color: #888888; 
-            font-size: 1.1em; 
-            margin-bottom: 40px; 
-        }
-        .alert-box { 
-            background-color: rgba(255, 59, 48, 0.1); 
-            border: 1px solid #ff3b30; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin-bottom: 40px;
-        }
-        .alert-box h3 {
-            color: #ff3b30;
-            margin-top: 0;
-            font-size: 1.2em;
-            text-transform: uppercase;
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 20px; 
-        }
-        @media (min-width: 600px) {
-            .grid { grid-template-columns: 1fr 1fr; }
-        }
-        .card { 
-            background-color: #1a1a1a; 
-            padding: 25px; 
-            border-radius: 12px; 
-        }
-        .card h4 { 
-            margin-top: 0; 
-            font-size: 1.1em; 
-            color: #ffffff;
-            border-bottom: 1px solid #333333;
-            padding-bottom: 10px;
-        }
-        .card p { 
-            color: #aaaaaa; 
-            font-size: 0.9em; 
-        }
+        body { font-family: 'Courier New', Courier, monospace; background-color: #050505; color: #e0e0e0; margin: 0; padding: 0; line-height: 1.6; }
+        header { background-color: #0a0a0a; border-bottom: 1px solid #333; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5em; font-weight: bold; color: #fff; letter-spacing: 3px; }
+        .status { color: #ff3b30; font-size: 0.8em; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .blink { animation: blinker 1s linear infinite; height: 8px; width: 8px; background-color: #ff3b30; border-radius: 50%; display: inline-block; }
+        @keyframes blinker { 50% { opacity: 0; } }
         
-        /* コンプライアンス（規格）セクションのスタイル */
-        .certifications { 
-            margin-top: 50px; 
-            border-top: 1px solid #222222; 
-            padding-top: 30px; 
-            text-align: center; 
-        }
-        .certifications h3 { 
-            color: #666666; 
-            font-size: 0.85em; 
-            letter-spacing: 2px; 
-            margin-bottom: 20px; 
-        }
-        .cert-badge-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 15px; 
-            flex-wrap: wrap; 
-        }
-        .cert-badge { 
-            background-color: #111111; 
-            border: 1px solid #333333; 
-            padding: 10px 15px; 
-            border-radius: 4px; 
-            color: #888888; 
-            font-size: 0.8em; 
-            font-weight: bold; 
-            letter-spacing: 1px; 
-        }
-
-        .disclaimer { 
-            margin-top: 50px; 
-            font-size: 0.75em; 
-            color: #555555; 
-            text-align: center;
-        }
+        .container { max-width: 600px; margin: 0 auto; padding: 30px 20px; }
+        .system-info { background: #111; border: 1px solid #222; padding: 15px; border-radius: 5px; margin-bottom: 30px; font-size: 0.9em; color: #00ffcc; }
+        
+        .warning-box { border-left: 4px solid #ff3b30; padding-left: 15px; margin-bottom: 40px; }
+        .warning-box h2 { color: #ff3b30; margin-top: 0; font-size: 1.3em; text-transform: uppercase; }
+        
+        /* 動画プレースホルダーのスタイル */
+        .video-container { background: #000; border: 1px solid #333; border-radius: 5px; padding: 10px; margin-bottom: 40px; text-align: center; }
+        .video-container h3 { color: #888; font-size: 0.9em; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .video-player { width: 100%; aspect-ratio: 16/9; background: #1a1a1a; display: flex; align-items: center; justify-content: center; color: #555; font-size: 0.8em; }
+        
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .card { background: #0a0a0a; border: 1px dashed #333; padding: 15px; font-size: 0.85em; }
+        .card h4 { color: #fff; margin-top: 0; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        
+        .footer { margin-top: 50px; font-size: 0.7em; color: #444; text-align: center; border-top: 1px solid #111; padding-top: 20px; }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">AI.NOC</div>
-        <div class="live-status"><div class="dot"></div> LIVE MONITORING</div>
+        <div class="status"><span class="blink"></span> LIVE NODE</div>
     </header>
     
     <div class="container">
-        <h2>PROTECTED ZONE.</h2>
-        <div class="subtitle">Next-Generation Mesh Dispatch System</div>
-        
-        <div class="alert-box">
-            <h3>Warning</h3>
-            <p>This property is actively monitored by the AI.NOC decentralized network. Unauthorized access, trespassing, or suspicious activities are automatically detected and instantly broadcasted to the nearest active patrol units and local law enforcement.</p>
+        <!-- 動的データ表示セクション -->
+        <div class="system-info">
+            <div>NODE ID: <span id="property-id">#TK-88392-A</span></div>
+            <div>STATUS: ACTIVE & ARMED</div>
+            <div>LOCAL TIME: <span id="live-clock"></span></div>
+        </div>
+
+        <div class="warning-box">
+            <h2>Access Logged</h2>
+            <p>You have accessed a decentralized AI.NOC surveillance node. Your device IP, MAC address, and current biometric data (if scanned on-site) are currently being evaluated by our neural network.</p>
+        </div>
+
+        <!-- AI動画配置セクション -->
+        <div class="video-container">
+            <h3>Recent Incident Log (Auto-Resolved)</h3>
+            <div class="video-player">
+                <!-- 動画を作成したら、ここに <video> タグを入れます -->
+                [ VIDEO FEED ENCRYPTED / AWAITING UPLOAD ]
+            </div>
+            <p style="font-size: 0.75em; color: #666; margin-top: 10px;">Event #8992: Target identified via facial mesh. Local vigilante dispatch canceled due to target fleeing.</p>
         </div>
         
         <div class="grid">
             <div class="card">
-                <h4>Predictive AI Surveillance</h4>
-                <p>Continuous 24/7 analysis of video and thermal sensors. Our neural network identifies pre-incident behavioral patterns to prevent crime before it happens.</p>
+                <h4>Decentralized Defense</h4>
+                <p>We are not a corporation. We are an autonomous, community-driven mesh network. No central servers to hack, no corporate bureaucracy to slow down emergency response.</p>
             </div>
             <div class="card">
-                <h4>Instant Mesh-Dispatch</h4>
-                <p>Bypassing traditional dispatch delays. Alerts are autonomously routed to the closest verified neighborhood responders and private tactical units within seconds.</p>
-            </div>
-            <div class="card">
-                <h4>Cloud Video Evidence</h4>
-                <p>All sensor triggers instantly upload encrypted footage to secure, decentralized offshore servers, ensuring evidence cannot be tampered with or destroyed.</p>
-            </div>
-            <div class="card">
-                <h4>Community Sync</h4>
-                <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
+                <h4>Facial Recognition Mesh</h4>
+                <p>Upon QR scan or motion trigger, local hardware instantly cross-references facial topologies against public and private threat databases.</p>
             </div>
         </div>
 
-        <!-- 認証・規格セクションの追加 -->
-        <div class="certifications">
-            <h3>GLOBAL COMPLIANCE & CERTIFICATIONS</h3>
-            <div class="cert-badge-container">
-                <div class="cert-badge">ISO/IEC 27001</div>
-                <div class="cert-badge">SOC 2 TYPE II</div>
-                <div class="cert-badge">FIPS 140-2</div>
-                <div class="cert-badge">GDPR COMPLIANT</div>
-            </div>
-        </div>
-
-        <div class="disclaimer">
-            PROPERTY OF AI.NOC SECURITY SYSTEMS.<br>
-            Any data captured is processed in accordance with local laws and immediately handed over to authorities upon incident verification. Violators will be prosecuted to the fullest extent of the law.
+        <div class="footer">
+            AI.NOC AUTONOMOUS NETWORK<br>
+            "Expect us when you least expect it."
         </div>
     </div>
+
+    <!-- 動的データ用のJavaScript -->
+    <script>
+        // ミリ秒単位の時計を動かすスクリプト
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toISOString().replace('T', ' ').replace('Z', ' UTC');
+            document.getElementById('live-clock').textContent = timeString;
+        }
+        setInterval(updateClock, 50); // 50ミリ秒ごとに更新
+        updateClock();
+
+        // ページを開くたびにランダムなIPアドレス（ダミー）をコンソールに出力するハッタリ
+        console.log("%c[AI.NOC SYSTEM] Target Device Fingerprinted. Connecting to peer nodes...", "color: red; font-weight: bold; font-size: 14px;");
+    </script>
 </body>
 </html>
