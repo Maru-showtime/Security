@@ -193,3 +193,100 @@
             color: #555555; 
             text-align: center;
             padding: 20px 0;
+            border-top: 1px solid #1a1a1a;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .text-column {
+                width: 100%;
+            }
+            .video-column {
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: 40px;
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AI.NOC</div>
+        <div class="live-status"><div class="dot"></div> LIVE NODE MONITORING</div>
+    </header>
+    
+    <div class="main-content">
+        <div class="text-column">
+            <div class="system-info">
+                <div>NODE ID: TK-88392-A | LOCATION: Ome, Tokyo - Japan</div>
+                <div>LOCAL TIME: <span id="live-clock"></span></div>
+            </div>
+
+            <h2>PROTECTED ZONE.</h2>
+            <div class="subtitle">Next-Generation Mesh Dispatch System</div>
+            
+            <div class="alert-box">
+                <h3>Warning</h3>
+                <p>This property is actively monitored by the AI.NOC decentralized network. Unauthorized access, trespassing, or suspicious activities are automatically detected and instantly broadcasted to the nearest active patrol units and local law enforcement.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>Predictive AI Surveillance</h4>
+                    <p>Continuous 24/7 analysis of video and thermal sensors. Our neural network identifies pre-incident behavioral patterns to prevent crime before it happens.</p>
+                </div>
+                <div class="card">
+                    <h4>Instant Mesh-Dispatch</h4>
+                    <p>Bypassing traditional dispatch delays. Alerts are autonomously routed to the closest verified neighborhood responders and private tactical units within seconds.</p>
+                </div>
+                <div class="card">
+                    <h4>Cloud Video Evidence</h4>
+                    <p>All sensor triggers instantly upload encrypted footage to secure, decentralized offshore servers, ensuring evidence cannot be tampered with or destroyed.</p>
+                </div>
+                <div class="card">
+                    <h4>Community Sync</h4>
+                    <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-column">
+            <div class="video-container">
+                <div class="video-player">
+                    <video src="TK-88392-A.mp4" width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover; border-radius: 10px;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="certifications">
+        <h3>GLOBAL COMPLIANCE & CERTIFICATIONS</h3>
+        <div class="cert-badge-container">
+            <div class="cert-badge">ISO/IEC 27001</div>
+            <div class="cert-badge">SOC 2 TYPE II</div>
+            <div class="cert-badge">FIPS 140-2</div>
+            <div class="cert-badge">GDPR COMPLIANT</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        PROPERTY OF AI.NOC SECURITY SYSTEMS.<br>
+        © 2026 AI.NOC Security & Community Solutions. All rights reserved.
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toISOString().replace('T', ' ').replace('Z', ' UTC');
+            document.getElementById('live-clock').textContent = timeString;
+        }
+        setInterval(updateClock, 50);
+        updateClock();
+    </script>
+</body>
+</html>
