@@ -100,12 +100,41 @@
             color: #aaaaaa; 
             font-size: 0.9em; 
         }
+        
+        /* コンプライアンス（規格）セクションのスタイル */
+        .certifications { 
+            margin-top: 50px; 
+            border-top: 1px solid #222222; 
+            padding-top: 30px; 
+            text-align: center; 
+        }
+        .certifications h3 { 
+            color: #666666; 
+            font-size: 0.85em; 
+            letter-spacing: 2px; 
+            margin-bottom: 20px; 
+        }
+        .cert-badge-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: wrap; 
+        }
+        .cert-badge { 
+            background-color: #111111; 
+            border: 1px solid #333333; 
+            padding: 10px 15px; 
+            border-radius: 4px; 
+            color: #888888; 
+            font-size: 0.8em; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+        }
+
         .disclaimer { 
-            margin-top: 60px; 
+            margin-top: 50px; 
             font-size: 0.75em; 
             color: #555555; 
-            border-top: 1px solid #222222; 
-            padding-top: 20px; 
             text-align: center;
         }
     </style>
@@ -141,6 +170,17 @@
             <div class="card">
                 <h4>Community Sync</h4>
                 <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
+            </div>
+        </div>
+
+        <!-- 認証・規格セクションの追加 -->
+        <div class="certifications">
+            <h3>GLOBAL COMPLIANCE & CERTIFICATIONS</h3>
+            <div class="cert-badge-container">
+                <div class="cert-badge">ISO/IEC 27001</div>
+                <div class="cert-badge">SOC 2 TYPE II</div>
+                <div class="cert-badge">FIPS 140-2</div>
+                <div class="cert-badge">GDPR COMPLIANT</div>
             </div>
         </div>
 
