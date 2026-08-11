@@ -155,6 +155,89 @@
             object-fit: cover; 
         }
         
+        /* コミュニティマップ・アラートセクションのスタイル (image_14.png再現) */
+        .community-alerts-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 40px;
+        }
+        
+        /* アプリ画面画像のスタイル（スマホフレーム） */
+        .map-image-column {
+            width: 35%;
+            position: relative;
+        }
+        .map-app-container {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 10px;
+            aspect-ratio: 9/16;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .map-app-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* 説明テキストのスタイル */
+        .alert-text-column {
+            width: 60%;
+        }
+        .alert-text-column h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .community-feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .community-feature-card {
+            background-color: #1a1a1a;
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .community-feature-card h4 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 1.1em;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .community-feature-card p {
+            color: #aaaaaa;
+            font-size: 0.9em;
+            margin: 0;
+        }
+        
+        /* Citizenアイコンの色再現 */
+        .icon-track { color: #ff3b30; } /* 赤：Track Incidents */
+        .icon-instant { color: #ffcc00; } /* 黄：Instant Alerts */
+        .icon-broadcast { color: #007aff; } /* 青：Decentralized Verification */
+        
+        .community-feature-icon {
+            font-size: 1.5em;
+            width: 30px;
+            text-align: center;
+        }
+
         .certifications { 
             margin-top: 50px; 
             border-top: 1px solid #1a1a1a; 
@@ -197,19 +280,23 @@
         }
         
         @media (max-width: 768px) {
-            .main-content {
+            .main-content, .community-alerts-section {
                 flex-direction: column-reverse;
                 align-items: center;
             }
-            .text-column {
+            .text-column, .alert-text-column {
                 width: 100%;
             }
-            .video-column {
+            .video-column, .map-image-column {
                 width: 100%;
                 max-width: 400px;
                 margin-bottom: 40px;
                 position: relative;
                 top: 0;
+            }
+            .community-alerts-section {
+                margin-top: 40px;
+                padding-top: 30px;
             }
         }
     </style>
@@ -259,6 +346,41 @@
             <div class="video-container">
                 <div class="video-player">
                     <video src="TK-88392-A.mp4" width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover; border-radius: 10px;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="community-alerts-section">
+        <div class="map-image-column">
+            <div class="map-app-container">
+                <div style="background-color: #1a1a1a; width: 100%; height: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 0.8em;">[ COMMUNITY MAP ENCRYPTED ]</div>
+            </div>
+        </div>
+
+        <div class="alert-text-column">
+            <h2>Community Mesh Vigilance.</h2>
+            <div class="community-feature-grid">
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-track">🎥</div>
+                    <div>
+                        <h4>Track Incidents Live.</h4>
+                        <p>Live camera links showing pre-incident behavioral analysis in real-time. Verify alerts from multiple angles.</p>
+                    </div>
+                </div>
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-instant">🔔</div>
+                    <div>
+                        <h4>Instant AI Network Alerts.</h4>
+                        <p>Speed is critical. Autonomous mesh-dispatch goes out in seconds—sometimes before official sirens are activated.</p>
+                    </div>
+                </div>
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-broadcast">📤</div>
+                    <div>
+                        <h4>Decentralized Verification.</h4>
+                        <p>Participate in the chain. Verified responders can upload real-time updates and comments to secure the immediate perimeter.</p>
+                    </div>
                 </div>
             </div>
         </div>
