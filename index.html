@@ -155,7 +155,7 @@
             object-fit: cover; 
         }
         
-        /* コミュニティマップ・アラートセクションのスタイル (image_14.png再現) */
+        /* コミュニティマップ・アラートセクションのスタイル */
         .community-alerts-section {
             display: flex;
             justify-content: space-between;
@@ -167,7 +167,6 @@
             padding-top: 40px;
         }
         
-        /* アプリ画面画像のスタイル（スマホフレーム） */
         .map-image-column {
             width: 35%;
             position: relative;
@@ -191,7 +190,6 @@
             border-radius: 10px;
         }
 
-        /* 説明テキストのスタイル */
         .alert-text-column {
             width: 60%;
         }
@@ -227,10 +225,9 @@
             margin: 0;
         }
         
-        /* Citizenアイコンの色再現 */
-        .icon-track { color: #ff3b30; } /* 赤：Track Incidents */
-        .icon-instant { color: #ffcc00; } /* 黄：Instant Alerts */
-        .icon-broadcast { color: #007aff; } /* 青：Decentralized Verification */
+        .icon-track { color: #ff3b30; } 
+        .icon-instant { color: #ffcc00; } 
+        .icon-broadcast { color: #007aff; } 
         
         .community-feature-icon {
             font-size: 1.5em;
@@ -279,136 +276,4 @@
             border-top: 1px solid #1a1a1a;
         }
         
-        @media (max-width: 768px) {
-            .main-content, .community-alerts-section {
-                flex-direction: column-reverse;
-                align-items: center;
-            }
-            .text-column, .alert-text-column {
-                width: 100%;
-            }
-            .video-column, .map-image-column {
-                width: 100%;
-                max-width: 400px;
-                margin-bottom: 40px;
-                position: relative;
-                top: 0;
-            }
-            .community-alerts-section {
-                margin-top: 40px;
-                padding-top: 30px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">AI.NOC</div>
-        <div class="live-status"><div class="dot"></div> LIVE NODE MONITORING</div>
-    </header>
-    
-    <div class="main-content">
-        <div class="text-column">
-            <div class="system-info">
-                <div>NODE ID: TK-88392-A | LOCATION: Ome, Tokyo - Japan</div>
-                <div>LOCAL TIME: <span id="live-clock"></span></div>
-            </div>
-
-            <h2>PROTECTED ZONE.</h2>
-            <div class="subtitle">Next-Generation Mesh Dispatch System</div>
-            
-            <div class="alert-box">
-                <h3>Warning</h3>
-                <p>This property is actively monitored by the AI.NOC decentralized network. Unauthorized access, trespassing, or suspicious activities are automatically detected and instantly broadcasted to the nearest active patrol units and local law enforcement.</p>
-            </div>
-            
-            <div class="grid">
-                <div class="card">
-                    <h4>Predictive AI Surveillance</h4>
-                    <p>Continuous 24/7 analysis of video and thermal sensors. Our neural network identifies pre-incident behavioral patterns to prevent crime before it happens.</p>
-                </div>
-                <div class="card">
-                    <h4>Instant Mesh-Dispatch</h4>
-                    <p>Bypassing traditional dispatch delays. Alerts are autonomously routed to the closest verified neighborhood responders and private tactical units within seconds.</p>
-                </div>
-                <div class="card">
-                    <h4>Cloud Video Evidence</h4>
-                    <p>All sensor triggers instantly upload encrypted footage to secure, decentralized offshore servers, ensuring evidence cannot be tampered with or destroyed.</p>
-                </div>
-                <div class="card">
-                    <h4>Community Sync</h4>
-                    <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="video-column">
-            <div class="video-container">
-                <div class="video-player">
-                    <video src="TK-88392-A.mp4" width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover; border-radius: 10px;"></video>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="community-alerts-section">
-        <div class="map-image-column">
-            <div class="map-app-container">
-                <div style="background-color: #1a1a1a; width: 100%; height: 100%; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 0.8em;">[ COMMUNITY MAP ENCRYPTED ]</div>
-            </div>
-        </div>
-
-        <div class="alert-text-column">
-            <h2>Community Mesh Vigilance.</h2>
-            <div class="community-feature-grid">
-                <div class="community-feature-card">
-                    <div class="community-feature-icon icon-track">🎥</div>
-                    <div>
-                        <h4>Track Incidents Live.</h4>
-                        <p>Live camera links showing pre-incident behavioral analysis in real-time. Verify alerts from multiple angles.</p>
-                    </div>
-                </div>
-                <div class="community-feature-card">
-                    <div class="community-feature-icon icon-instant">🔔</div>
-                    <div>
-                        <h4>Instant AI Network Alerts.</h4>
-                        <p>Speed is critical. Autonomous mesh-dispatch goes out in seconds—sometimes before official sirens are activated.</p>
-                    </div>
-                </div>
-                <div class="community-feature-card">
-                    <div class="community-feature-icon icon-broadcast">📤</div>
-                    <div>
-                        <h4>Decentralized Verification.</h4>
-                        <p>Participate in the chain. Verified responders can upload real-time updates and comments to secure the immediate perimeter.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="certifications">
-        <h3>GLOBAL COMPLIANCE & CERTIFICATIONS</h3>
-        <div class="cert-badge-container">
-            <div class="cert-badge">ISO/IEC 27001</div>
-            <div class="cert-badge">SOC 2 TYPE II</div>
-            <div class="cert-badge">FIPS 140-2</div>
-            <div class="cert-badge">GDPR COMPLIANT</div>
-        </div>
-    </div>
-
-    <div class="footer">
-        PROPERTY OF AI.NOC SECURITY SYSTEMS.<br>
-        © 2026 AI.NOC Security & Community Solutions. All rights reserved.
-    </div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toISOString().replace('T', ' ').replace('Z', ' UTC');
-            document.getElementById('live-clock').textContent = timeString;
-        }
-        setInterval(updateClock, 50);
-        updateClock();
-    </script>
-</body>
-</html>
+        @media (max-width: 768px
