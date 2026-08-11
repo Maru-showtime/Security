@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI.NOC | Live Security Network</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #000000; 
+            color: #ffffff; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.5;
+        }
+        header { 
+            background-color: #111111; 
+            border-bottom: 1px solid #333333; 
+            padding: 20px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            font-size: 1.8em; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            margin: 0;
+        }
+        .live-status { 
+            color: #ff3b30; 
+            font-weight: 700; 
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); } 
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); } 
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); } 
+        }
+        .container { 
+            max-width: 700px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        h2 { 
+            font-size: 2.2em; 
+            font-weight: 800; 
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .subtitle { 
+            color: #888888; 
+            font-size: 1.1em; 
+            margin-bottom: 40px; 
+        }
+        .alert-box { 
+            background-color: rgba(255, 59, 48, 0.1); 
+            border: 1px solid #ff3b30; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-bottom: 40px;
+        }
+        .alert-box h3 {
+            color: #ff3b30;
+            margin-top: 0;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 20px; 
+        }
+        @media (min-width: 600px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+        .card { 
+            background-color: #1a1a1a; 
+            padding: 25px; 
+            border-radius: 12px; 
+        }
+        .card h4 { 
+            margin-top: 0; 
+            font-size: 1.1em; 
+            color: #ffffff;
+            border-bottom: 1px solid #333333;
+            padding-bottom: 10px;
+        }
+        .card p { 
+            color: #aaaaaa; 
+            font-size: 0.9em; 
+        }
+        .disclaimer { 
+            margin-top: 60px; 
+            font-size: 0.75em; 
+            color: #555555; 
+            border-top: 1px solid #222222; 
+            padding-top: 20px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AI.NOC</div>
+        <div class="live-status"><div class="dot"></div> LIVE MONITORING</div>
+    </header>
+    
+    <div class="container">
+        <h2>PROTECTED ZONE.</h2>
+        <div class="subtitle">Next-Generation Mesh Dispatch System</div>
+        
+        <div class="alert-box">
+            <h3>Warning</h3>
+            <p>This property is actively monitored by the AI.NOC decentralized network. Unauthorized access, trespassing, or suspicious activities are automatically detected and instantly broadcasted to the nearest active patrol units and local law enforcement.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h4>Predictive AI Surveillance</h4>
+                <p>Continuous 24/7 analysis of video and thermal sensors. Our neural network identifies pre-incident behavioral patterns to prevent crime before it happens.</p>
+            </div>
+            <div class="card">
+                <h4>Instant Mesh-Dispatch</h4>
+                <p>Bypassing traditional dispatch delays. Alerts are autonomously routed to the closest verified neighborhood responders and private tactical units within seconds.</p>
+            </div>
+            <div class="card">
+                <h4>Cloud Video Evidence</h4>
+                <p>All sensor triggers instantly upload encrypted footage to secure, decentralized offshore servers, ensuring evidence cannot be tampered with or destroyed.</p>
+            </div>
+            <div class="card">
+                <h4>Community Sync</h4>
+                <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            PROPERTY OF AI.NOC SECURITY SYSTEMS.<br>
+            Any data captured is processed in accordance with local laws and immediately handed over to authorities upon incident verification. Violators will be prosecuted to the fullest extent of the law.
+        </div>
+    </div>
+</body>
+</html>
