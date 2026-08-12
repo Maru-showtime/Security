@@ -1,4 +1,286 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="robots" content="noindex, nofollow">
+    <title>AI.NOC | Decentralized Surveillance Node</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "AI.NOC Decentralized Vigilante Network",
+      "description": "An invite-only, highly restricted autonomous neighborhood watch mesh network operating on decentralized nodes. Not a commercial entity. Access strictly limited to verified community responders.",
+      "areaServed": {
+        "@type": "City",
+        "name": "Ome, Tokyo, Japan"
+      }
+    }
+    </script>
+
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #000000; color: #ffffff; margin: 0; padding: 0; line-height: 1.5; }
+        header { background-color: #111111; border-bottom: 1px solid #333333; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8em; font-weight: 900; letter-spacing: 2px; margin: 0; color: #ffffff; }
+        .live-status { color: #ff3b30; font-weight: 700; font-size: 0.9em; display: flex; align-items: center; gap: 8px; }
+        .dot { width: 10px; height: 10px; background-color: #ff3b30; border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); } }
+        
+        .main-content { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .text-column { width: 60%; }
+        
+        .system-info { background: #111; border: 1px solid #222; padding: 15px; border-radius: 5px; margin-bottom: 30px; font-size: 0.9em; color: #00ffcc; font-family: 'Courier New', Courier, monospace; line-height: 1.8; }
+        .sys-highlight { color: #ff3b30; font-weight: bold; }
+        
+        h2 { font-size: 2.2em; font-weight: 800; margin-bottom: 10px; line-height: 1.1; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; }
+        .subtitle { color: #888888; font-size: 1.1em; margin-bottom: 40px; }
+        
+        .alert-box { 
+            background: repeating-linear-gradient( 45deg, rgba(255, 59, 48, 0.03), rgba(255, 59, 48, 0.03) 10px, rgba(255, 59, 48, 0.08) 10px, rgba(255, 59, 48, 0.08) 20px );
+            border: 1px solid #ff3b30; 
+            padding: 20px 20px 20px 65px; 
+            border-radius: 8px; 
+            margin-bottom: 40px; 
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(255, 59, 48, 0.1);
+        }
+        .alert-box::before {
+            content: '!';
+            position: absolute;
+            left: 20px;
+            top: 25px;
+            width: 28px;
+            height: 28px;
+            background-color: #ffcc00;
+            color: #000;
+            font-weight: 900;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: alert-blink 1.2s infinite alternate;
+        }
+        @keyframes alert-blink { 0% { opacity: 1; filter: drop-shadow(0 0 5px #ffcc00); } 100% { opacity: 0.6; filter: none; } }
+        .alert-box h3 { color: #ff3b30; margin-top: 0; font-size: 1.2em; text-transform: uppercase; letter-spacing: 1px; }
+        .alert-box p { margin-bottom: 0; color: #e0e0e0; }
+
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .card { background-color: #1a1a1a; padding: 25px; border-radius: 12px; border: 1px solid #222; }
+        
+        .card-title-wrapper { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #333333; padding-bottom: 10px; margin-bottom: 10px; }
+        .card-title-wrapper h4 { margin: 0; font-size: 1.1em; color: #ffffff; border-bottom: none; padding-bottom: 0; }
+        .card p { color: #aaaaaa; font-size: 0.9em; line-height: 1.6; margin: 0; }
+        
+        .sys-icon { width: 24px; height: 24px; position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .icon-surveillance { border: 2px solid #ff3b30; border-radius: 50%; box-sizing: border-box; }
+        .icon-surveillance::before { content: ''; position: absolute; width: 4px; height: 4px; background: #ff3b30; border-radius: 50%; animation: pulse-live 1.5s infinite; }
+        .icon-dispatch::before { content: ''; position: absolute; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 14px; border-color: transparent transparent transparent #ffcc00; }
+        .icon-dispatch::after { content: ''; position: absolute; width: 8px; height: 4px; background: #ffcc00; left: 2px; }
+        .icon-evidence { border: 2px solid #007aff; border-radius: 3px; box-sizing: border-box; }
+        .icon-evidence::before { content: ''; position: absolute; top: 4px; left: 3px; width: 14px; height: 2px; background: #007aff; }
+        .icon-evidence::after { content: ''; position: absolute; bottom: 4px; left: 3px; width: 14px; height: 2px; background: #007aff; }
+        .icon-sync { border: 2px dashed #00ffcc; border-radius: 50%; box-sizing: border-box; animation: spin-slow 4s linear infinite; }
+        .icon-sync::before { content: ''; position: absolute; width: 6px; height: 6px; background: #00ffcc; border-radius: 50%; }
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        
+        .video-column { width: 35%; position: sticky; top: 20px; }
+        .video-container { background: #000; border: 1px solid #333; border-radius: 20px; padding: 10px; margin-bottom: 40px; text-align: center; aspect-ratio: 9/16; display: flex; flex-direction: column; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .video-player { width: 100%; height: 100%; background: #1a1a1a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #555; font-size: 0.8em; object-fit: cover; }
+        
+        .community-alerts-section { display: flex; justify-content: space-between; align-items: flex-start; max-width: 1100px; margin: 60px auto 40px; padding: 0 20px; border-top: 1px solid #1a1a1a; padding-top: 40px; }
+        .map-image-column { width: 35%; position: relative; }
+        .map-app-container { background: #000; border: 1px solid #333; border-radius: 20px; padding: 10px; aspect-ratio: 9/16; display: flex; flex-direction: column; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.5); overflow: hidden; }
+        .alert-text-column { width: 60%; }
+        .alert-text-column h2 { font-size: 2em; margin-bottom: 30px; text-transform: uppercase; }
+        .community-feature-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .community-feature-card { background-color: #1a1a1a; padding: 25px; border-radius: 12px; display: flex; align-items: flex-start; gap: 15px; border: 1px solid #222; }
+        .community-feature-card h4 { margin-top: 0; color: #ffffff; font-size: 1.1em; border-bottom: 1px solid #333333; padding-bottom: 5px; margin-bottom: 10px; }
+        .community-feature-card p { color: #aaaaaa; font-size: 0.9em; margin: 0; line-height: 1.5; }
+        
+        .community-feature-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; top: 2px; }
+        .icon-track { position: relative; }
+        .icon-track::before { content: ''; display: inline-block; width: 14px; height: 10px; background-color: #ff3b30; border-radius: 2px; position: relative; }
+        .icon-track::after { content: ''; display: inline-block; width: 0; height: 0; border-style: solid; border-width: 4px 0 4px 6px; border-color: transparent transparent transparent #ff3b30; position: relative; left: -1px; }
+        .icon-track-live { width: 6px; height: 6px; background-color: #ff3b30; border-radius: 50%; position: absolute; top: -3px; right: -3px; animation: pulse-live 1s infinite; }
+
+        .icon-instant { position: relative; }
+        .icon-instant::before { content: ''; display: inline-block; width: 12px; height: 12px; border: 2px solid #ffcc00; border-radius: 50% 50% 0 0; position: relative; top: -2px; }
+        .icon-instant::after { content: ''; display: inline-block; width: 16px; height: 4px; background-color: #ffcc00; border-radius: 2px; position: absolute; bottom: 6px; left: 7px; }
+        .icon-instant-dot { width: 4px; height: 4px; background-color: #ffcc00; border-radius: 50%; position: absolute; bottom: 2px; left: 13px; animation: pulse-instant 1.5s infinite; }
+
+        .icon-broadcast { position: relative; }
+        .icon-broadcast::before { content: ''; display: inline-block; width: 14px; height: 14px; border: 2px solid #007aff; border-radius: 2px; position: relative; }
+        .icon-broadcast-mesh { position: absolute; width: 10px; height: 10px; top: 10px; left: 10px; }
+        .icon-broadcast-mesh::before { content: ''; position: absolute; width: 3px; height: 3px; background-color: #007aff; border-radius: 50%; top: 0; left: 0; }
+        .icon-broadcast-mesh::after { content: ''; position: absolute; width: 3px; height: 3px; background-color: #007aff; border-radius: 50%; bottom: 0; right: 0; }
+        .icon-broadcast-dot { position: absolute; width: 3px; height: 3px; background-color: #007aff; border-radius: 50%; top: 0; right: 0; }
+        .icon-broadcast-dot-2 { position: absolute; width: 3px; height: 3px; background-color: #007aff; border-radius: 50%; bottom: 0; left: 0; }
+        .icon-broadcast-line { position: absolute; width: 1px; height: 10px; background-color: rgba(0, 122, 255, 0.5); top: 2px; left: 7px; transform: rotate(45deg); }
+        .icon-broadcast-line-2 { position: absolute; width: 1px; height: 10px; background-color: rgba(0, 122, 255, 0.5); top: 2px; left: 7px; transform: rotate(-45deg); }
+
+        .download-section { max-width: 1100px; margin: 40px auto; padding: 30px 20px; background-color: #0a0a0a; border: 1px solid #333; border-radius: 12px; text-align: center; }
+        .download-title { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; color: #fff; letter-spacing: 1px; }
+        .download-btn-disabled { display: inline-block; padding: 15px 30px; background-color: #1a1a1a; color: #555; border: 1px dashed #444; border-radius: 6px; font-family: 'Courier New', Courier, monospace; font-weight: bold; letter-spacing: 1px; cursor: not-allowed; margin-bottom: 10px; }
+        .download-warning { color: #ff3b30; font-size: 0.85em; font-family: 'Courier New', Courier, monospace; }
+
+        .certifications { margin-top: 50px; border-top: 1px solid #111; padding-top: 30px; text-align: center; background-color: #050505; }
+        .certifications h3 { color: #555; font-size: 0.85em; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; }
+        .cert-badge-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .cert-badge { background-color: #0a0a0a; border: 1px solid #222; padding: 10px 15px; border-radius: 4px; color: #777; font-size: 0.8em; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+
+        .footer { margin-top: 50px; font-size: 0.75em; color: #444; text-align: center; padding: 20px 0; border-top: 1px solid #111; }
+        
+        @media (max-width: 768px) {
+            .main-content, .community-alerts-section { flex-direction: column-reverse; align-items: center; }
+            .text-column, .alert-text-column { width: 100%; }
+            .video-column, .map-image-column { width: 100%; max-width: 400px; margin-bottom: 40px; position: relative; top: 0; }
+            .community-alerts-section { margin-top: 40px; padding-top: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">AI.NOC</div>
+        <div class="live-status"><div class="dot"></div> LIVE NODE MONITORING</div>
+    </header>
+    
+    <div class="main-content">
+        <div class="text-column">
+            <div class="system-info">
+                <div>NODE ID: TK-88392-A</div>
+                <div>TARGET IP: <span id="sys-ip" class="sys-highlight">Scanning...</span></div>
+                <div>LOCATION: <span class="sys-location">Detecting footprint...</span></div>
+                <div>LOCAL TIME: <span id="live-clock"></span></div>
+            </div>
+
+            <h2>PROTECTED ZONE.</h2>
+            <div class="subtitle">Next-Generation Mesh Dispatch System</div>
+            
+            <div class="alert-box">
+                <h3>Warning: Active Surveillance</h3>
+                <p>This property is actively monitored by the AI.NOC decentralized network. Unauthorized access, trespassing, or suspicious activities are automatically detected and instantly broadcasted to the nearest active patrol units and local law enforcement.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title-wrapper">
+                        <div class="sys-icon icon-surveillance"></div>
+                        <h4>Predictive AI Surveillance</h4>
+                    </div>
+                    <p>Continuous 24/7 analysis of video and thermal sensors. Our neural network identifies pre-incident behavioral patterns to prevent crime before it happens.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title-wrapper">
+                        <div class="sys-icon icon-dispatch"></div>
+                        <h4>Instant Mesh-Dispatch</h4>
+                    </div>
+                    <p>Bypassing traditional dispatch delays. Alerts are autonomously routed to the closest verified neighborhood responders and private tactical units within seconds.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title-wrapper">
+                        <div class="sys-icon icon-evidence"></div>
+                        <h4>Cloud Video Evidence</h4>
+                    </div>
+                    <p>All sensor triggers instantly upload encrypted footage to secure, decentralized offshore servers, ensuring evidence cannot be tampered with or destroyed.</p>
+                </div>
+                <div class="card">
+                    <div class="card-title-wrapper">
+                        <div class="sys-icon icon-sync"></div>
+                        <h4>Community Sync</h4>
+                    </div>
+                    <p>Fully integrated with local neighborhood watch protocols. Real-time incident data is shared with the community network to establish an immediate perimeter.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-column">
+            <div class="video-container">
+                <div class="video-player">
+                    <video src="TK-88392-A.mp4" width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover; border-radius: 10px;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="community-alerts-section">
+        <div class="map-image-column">
+            <div class="map-app-container">
+                <video src="TK-88392-citizen.mp4" width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover; border-radius: 10px;"></video>
+            </div>
+        </div>
+
+        <div class="alert-text-column">
+            <h2>Community Mesh Vigilance.</h2>
+            <p style="color:#888; font-family: monospace; margin-bottom: 20px;">> SYNCHRONIZED REGION: <span class="sys-location sys-highlight">Detecting footprint...</span></p>
+            <div class="community-feature-grid">
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-track">
+                        <div class="icon-track-live"></div>
+                    </div>
+                    <div>
+                        <h4>Track Incidents Live.</h4>
+                        <p>Live camera links showing pre-incident behavioral analysis in real-time. Verify alerts from multiple angles.</p>
+                    </div>
+                </div>
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-instant">
+                        <div class="icon-instant-dot"></div>
+                    </div>
+                    <div>
+                        <h4>Instant AI Network Alerts.</h4>
+                        <p>Speed is critical. Autonomous mesh-dispatch goes out in seconds—sometimes before official sirens are activated.</p>
+                    </div>
+                </div>
+                <div class="community-feature-card">
+                    <div class="community-feature-icon icon-broadcast">
+                        <div class="icon-broadcast-mesh">
+                            <div class="icon-broadcast-dot"></div>
+                            <div class="icon-broadcast-dot-2"></div>
+                            <div class="icon-broadcast-line"></div>
+                            <div class="icon-broadcast-line-2"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Decentralized Verification.</h4>
+                        <p>Participate in the chain. Verified responders can upload real-time updates and comments to secure the immediate perimeter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="download-section">
+        <div class="download-title">PEER NODE APP ACCESS</div>
+        <div class="download-btn-disabled">DOWNLOAD UNAVAILABLE [RESTRICTED]</div>
+        <div class="download-warning">
+            ACCESS DENIED. Unrecognized device footprint on the local mesh.<br>
+            AI.NOC client provisioning requires hardware-level E2EE authentication.<br>
+            Please contact your designated mesh administrator for device registration.
+        </div>
+    </div>
+
+    <div class="certifications">
+        <h3>GLOBAL COMPLIANCE & CERTIFICATIONS</h3>
+        <div class="cert-badge-container">
+            <div class="cert-badge">ISO/IEC 27001</div>
+            <div class="cert-badge">SOC 2 TYPE II</div>
+            <div class="cert-badge">FIPS 140-2</div>
+            <div class="cert-badge">GDPR COMPLIANT</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        PROPERTY OF AI.NOC SECURITY SYSTEMS.<br>
+        © 2026 AI.NOC Security & Community Solutions. All rights reserved.
+    </div>
+
+    <script>
         (function(_0x3f2a, _0x8c1b) {
             const _0x5b41 = function() {
                 const _0x2e8f = new Date();
@@ -14,7 +296,6 @@
             console.log("%c[AI.NOC MESH CORE] Initializing Zero-Trust Enclave...", "color: #00ffcc; font-weight: bold; font-family: monospace;");
             console.log("%c[AUTH] Session Established: " + _0xa1c4 + " | Device Fingerprinted", "color: #888888; font-family: monospace;");
 
-            // APIのURLをBase64でエンコードし、パッと見で無料APIだとバレないように隠蔽
             fetch(atob('aHR0cHM6Ly9pcGFwaS5jby9qc29uLw=='))
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
@@ -28,7 +309,6 @@
                     if(ipEl) ipEl.textContent = ip;
                 })
                 .catch(function() {
-                    // 失敗時はカッコつけず、無機質なシステムエラーを吐く
                     const locEls = document.querySelectorAll('.sys-location');
                     for (let i = 0; i < locEls.length; i++) {
                         locEls[i].textContent = 'ERR_TIMEOUT_NODE_UNREACHABLE';
@@ -46,3 +326,5 @@
             }, 12000);
         })(window, document);
     </script>
+</body>
+</html>
