@@ -292,25 +292,31 @@
             console.log("%c[AI.NOC MESH CORE] Initializing Zero-Trust Enclave...", "color: #00ffcc; font-weight: bold; font-family: monospace;");
             console.log("%c[AUTH] Session Established: " + _0xa1c4 + " | Device Fingerprinted", "color: #888888; font-family: monospace;");
 
-            fetch(atob('aHR0cHM6Ly9pcGFwaS5jby9qc29uLw=='))
+            const _0xupdate = function(ip, loc) {
+                const locEls = document.querySelectorAll('.sys-location');
+                for (let i = 0; i < locEls.length; i++) {
+                    locEls[i].textContent = loc;
+                }
+                const ipEl = document.getElementById('sys-ip');
+                if(ipEl) ipEl.textContent = ip;
+            };
+
+            fetch(atob('aHR0cHM6Ly9pcHdoby5pcy8='))
                 .then(function(res) { return res.json(); })
                 .then(function(data) {
-                    const loc = (data.city || 'ERR_GEO') + ', ' + (data.region || 'ERR_GEO') + ' - ' + (data.country_name || 'ERR_GEO');
-                    const ip = data.ip || 'UNAVAILABLE';
-                    const locEls = document.querySelectorAll('.sys-location');
-                    for (let i = 0; i < locEls.length; i++) {
-                        locEls[i].textContent = loc;
-                    }
-                    const ipEl = document.getElementById('sys-ip');
-                    if(ipEl) ipEl.textContent = ip;
+                    if (!data.ip) throw new Error();
+                    _0xupdate(data.ip, (data.city || '') + (data.region && data.region !== data.city ? ', ' + data.region : '') + (data.country ? ' - ' + data.country : ''));
                 })
                 .catch(function() {
-                    const locEls = document.querySelectorAll('.sys-location');
-                    for (let i = 0; i < locEls.length; i++) {
-                        locEls[i].textContent = 'ERR_TIMEOUT_NODE_UNREACHABLE';
-                    }
-                    const ipEl = document.getElementById('sys-ip');
-                    if(ipEl) ipEl.textContent = 'UNAVAILABLE';
+                    fetch(atob('aHR0cHM6Ly9pcGluZm8uaW8vanNvbg=='))
+                        .then(function(res) { return res.json(); })
+                        .then(function(data) {
+                            if (!data.ip) throw new Error();
+                            _0xupdate(data.ip, (data.city || 'Unknown') + ', ' + (data.region || 'Unknown') + ' - ' + (data.country || 'Unknown'));
+                        })
+                        .catch(function() {
+                            _0xupdate('UNAVAILABLE', 'ERR_TIMEOUT_NODE_UNREACHABLE');
+                        });
                 });
 
             setInterval(function() {
