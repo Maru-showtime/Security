@@ -219,14 +219,176 @@
             margin: 0;
         }
         
-        .icon-track { color: #ff3b30; } 
-        .icon-instant { color: #ffcc00; } 
-        .icon-broadcast { color: #007aff; } 
+        /* Citizenのアイコンの色をプロフェッショナルなトーンに修正 */
+        .icon-track-color { color: #ff4d4d; } /* 赤：Track Incidents */
+        .icon-instant-color { color: #ffcc00; } /* 黄：Instant Alerts */
+        .icon-broadcast-color { color: #007aff; } /* 青：Decentralized Verification */
         
+        /* 変更点：絵文字をCSSアイコンに置き換えるためのスタイル */
         .community-feature-icon {
-            font-size: 1.5em;
             width: 30px;
-            text-align: center;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            top: 2px;
+        }
+
+        /* 🎥 Track Incidents Live -> 洗練されたカメラアイコン + LIVEパルス */
+        .icon-track {
+            position: relative;
+        }
+        .icon-track::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 10px;
+            background-color: #ff3b30;
+            border-radius: 2px;
+            position: relative;
+        }
+        .icon-track::after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 4px 0 4px 6px;
+            border-color: transparent transparent transparent #ff3b30;
+            position: relative;
+            left: -1px;
+        }
+        /* 小さな「● LIVE」パルスエフェクトを追加 */
+        .icon-track-live {
+            width: 6px;
+            height: 6px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            animation: pulse-live 1s infinite;
+        }
+        @keyframes pulse-live {
+            0% { transform: scale(0.9); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(0.9); opacity: 1; }
+        }
+
+        /* 🔔 Instant AI Network Alerts -> 洗練された通知ベルアイコン +パルス */
+        .icon-instant {
+            position: relative;
+        }
+        .icon-instant::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #ffcc00;
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            top: -2px;
+        }
+        .icon-instant::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 4px;
+            background-color: #ffcc00;
+            border-radius: 2px;
+            position: absolute;
+            bottom: 6px;
+            left: 7px;
+        }
+        /* 小さなベルの舌とパルスエフェクト */
+        .icon-instant-dot {
+            width: 4px;
+            height: 4px;
+            background-color: #ffcc00;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 2px;
+            left: 13px;
+            animation: pulse-instant 1.5s infinite;
+        }
+        @keyframes pulse-instant {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        /* 📤 Decentralized Verification -> 分散型ネットワーク（メッシュ）を象徴するアイコン */
+        .icon-broadcast {
+            position: relative;
+        }
+        .icon-broadcast::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #007aff;
+            border-radius: 2px;
+            position: relative;
+        }
+        /* 分散型を表現する、小さな複数のドットとそれを繋ぐライン */
+        .icon-broadcast-mesh {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: 10px;
+            left: 10px;
+        }
+        .icon-broadcast-mesh::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #007aff;
+            border-radius: 50%;
+            top: 0; left: 0;
+        }
+        .icon-broadcast-mesh::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #007aff;
+            border-radius: 50%;
+            bottom: 0; right: 0;
+        }
+        .icon-broadcast-dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #007aff;
+            border-radius: 50%;
+            top: 0; right: 0;
+        }
+        .icon-broadcast-dot-2 {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #007aff;
+            border-radius: 50%;
+            bottom: 0; left: 0;
+        }
+        .icon-broadcast-line {
+            position: absolute;
+            width: 1px;
+            height: 10px;
+            background-color: rgba(0, 122, 255, 0.5);
+            top: 2px; left: 7px;
+            transform: rotate(45deg);
+        }
+        .icon-broadcast-line-2 {
+            position: absolute;
+            width: 1px;
+            height: 10px;
+            background-color: rgba(0, 122, 255, 0.5);
+            top: 2px; left: 7px;
+            transform: rotate(-45deg);
         }
 
         .certifications { 
@@ -353,21 +515,32 @@
             <h2>Community Mesh Vigilance.</h2>
             <div class="community-feature-grid">
                 <div class="community-feature-card">
-                    <div class="community-feature-icon icon-track">🎥</div>
+                    <div class="community-feature-icon icon-track">
+                        <div class="icon-track-live"></div>
+                    </div>
                     <div>
                         <h4>Track Incidents Live.</h4>
                         <p>Live camera links showing pre-incident behavioral analysis in real-time. Verify alerts from multiple angles.</p>
                     </div>
                 </div>
                 <div class="community-feature-card">
-                    <div class="community-feature-icon icon-instant">🔔</div>
+                    <div class="community-feature-icon icon-instant">
+                        <div class="icon-instant-dot"></div>
+                    </div>
                     <div>
                         <h4>Instant AI Network Alerts.</h4>
                         <p>Speed is critical. Autonomous mesh-dispatch goes out in seconds—sometimes before official sirens are activated.</p>
                     </div>
                 </div>
                 <div class="community-feature-card">
-                    <div class="community-feature-icon icon-broadcast">📤</div>
+                    <div class="community-feature-icon icon-broadcast">
+                        <div class="icon-broadcast-mesh">
+                            <div class="icon-broadcast-dot"></div>
+                            <div class="icon-broadcast-dot-2"></div>
+                            <div class="icon-broadcast-line"></div>
+                            <div class="icon-broadcast-line-2"></div>
+                        </div>
+                    </div>
                     <div>
                         <h4>Decentralized Verification.</h4>
                         <p>Participate in the chain. Verified responders can upload real-time updates and comments to secure the immediate perimeter.</p>
