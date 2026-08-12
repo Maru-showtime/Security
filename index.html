@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="robots" content="noindex, nofollow">
     <title>AI.NOC | Decentralized Surveillance Node</title>
     
     <script type="application/ld+json">
@@ -52,10 +55,6 @@
         .community-feature-card { background-color: #1a1a1a; padding: 25px; border-radius: 12px; display: flex; align-items: flex-start; gap: 15px; }
         .community-feature-card h4 { margin-top: 0; color: #ffffff; font-size: 1.1em; border-bottom: 1px solid #333333; padding-bottom: 5px; margin-bottom: 10px; }
         .community-feature-card p { color: #aaaaaa; font-size: 0.9em; margin: 0; }
-        
-        .icon-track-color { color: #ff4d4d; } 
-        .icon-instant-color { color: #ffcc00; } 
-        .icon-broadcast-color { color: #007aff; } 
         
         .community-feature-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; top: 2px; }
         .icon-track { position: relative; }
@@ -198,11 +197,11 @@
 
     <div class="download-section">
         <div class="download-title">PEER NODE APP ACCESS</div>
-        <div class="download-btn-disabled">DOWNLOAD UNAVAILABLE [RESTRICTED ACCESS]</div>
+        <div class="download-btn-disabled">DOWNLOAD UNAVAILABLE [RESTRICTED]</div>
         <div class="download-warning">
-            ACCESS DENIED. Your device is not registered on the local Zero-Trust mesh network.<br>
-            The AI.NOC client utilizes military-grade End-to-End Encryption (E2EE).<br>
-            Contact your district security administrator for physical device provisioning.
+            ACCESS DENIED. Unrecognized device footprint on the local mesh.<br>
+            AI.NOC client provisioning requires hardware-level E2EE authentication.<br>
+            Please contact your designated mesh administrator for device registration.
         </div>
     </div>
 
@@ -222,13 +221,29 @@
     </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toISOString().replace('T', ' ').replace('Z', ' UTC');
-            document.getElementById('live-clock').textContent = timeString;
-        }
-        setInterval(updateClock, 50);
-        updateClock();
+        (function(_0x1b4f, _0x3e9c) {
+            const _0x4d21 = function() {
+                const _0x12a9 = new Date();
+                const _0x3b8d = document.getElementById('live-clock');
+                if (_0x3b8d) {
+                    _0x3b8d.textContent = _0x12a9.toISOString().replace('T', ' ').replace('Z', ' UTC');
+                }
+            };
+            setInterval(_0x4d21, 50);
+            _0x4d21();
+
+            const _0x51c2 = '0x' + Math.random().toString(16).substr(2, 8).toUpperCase();
+            console.log("%c[AI.NOC MESH CORE] Initializing Zero-Trust Enclave...", "color: #00ffcc; font-weight: bold; font-family: monospace;");
+            console.log("%c[AUTH] Session Established: " + _0x51c2 + " | Device Fingerprinted", "color: #888888; font-family: monospace;");
+
+            setInterval(function() {
+                console.log("%c[" + new Date().toISOString() + "] [NODE_SYNC] Peer status: OK | Telemetry ping: " + Math.floor(Math.random() * 15 + 5) + "ms", "color: #444; font-size: 10px; font-family: monospace;");
+            }, 8000);
+
+            setInterval(function() {
+                fetch('https://telemetry.mesh-internal.arpa/v1/node/heartbeat?node=TK-88392-A&session=' + _0x51c2, { mode: 'no-cors' }).catch(function(){});
+            }, 12000);
+        })(window, document);
     </script>
 </body>
 </html>
